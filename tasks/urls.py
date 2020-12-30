@@ -5,10 +5,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from .views import TaskViewSet
+from .views import TaskViewSet,TaskListViewSet
 
 router = DefaultRouter()
 router.register('task', TaskViewSet, basename='task')
+router.register('tasklist', TaskListViewSet, basename='tasklist')
 
 urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
