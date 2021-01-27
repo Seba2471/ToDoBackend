@@ -15,10 +15,12 @@ class TaskListSerializers(serializers.ModelSerializer):
         model = TaskList
         fields = '__all__'
 
+    # Zlicza wszystkie taski dla podanej listy
     def get_all(self,obj):
         obj.all = Task.objects.filter(list=obj.id).count()
         return obj.all
 
+    # Zlicza wykonane taski dla podanej listy
     def get_done(self,obj):
         obj.done = Task.objects.filter(done=True,list=obj.id).count()
         return obj.done

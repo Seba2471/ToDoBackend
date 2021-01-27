@@ -11,6 +11,7 @@ from django.db.models import Count
 
 # Create your views here.
 
+# Lista taskow
 class TaskListViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
     serializer_class = TaskListSerializers
@@ -18,14 +19,8 @@ class TaskListViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id']
 
-    @action(detail=True)
-    def size_Task(self, request, pk=None):
-        done = Task.objects.filter(done=True, list=pk).count()
-        all = Task.objects.filter(list=pk).count()
-        data = [{"done": done, "all": all}]
-        return Response(data, status=status.HTTP_200_OK)
 
-
+# Pojedyncze taski
 class TaskViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
     serializer_class = TaskSerializers
